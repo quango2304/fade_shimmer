@@ -6,7 +6,6 @@ void main() {
       (WidgetTester tester) async {
     final widget = FadeShimmer.round(
       size: 60,
-      fadeTheme: FadeTheme.dark,
       millisecondsDelay: 0,
     );
     expect(widget, isA<FadeShimmer>());
