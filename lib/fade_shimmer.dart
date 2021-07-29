@@ -16,11 +16,11 @@ class FadeShimmer extends StatefulWidget {
   final double width;
   final double height;
 
-  //light or dark with predefined highlightColor and baseColor
-  //need to pass this or highlightColor and baseColor
+  /// light or dark with predefined highlightColor and baseColor
+  /// need to pass this or highlightColor and baseColor
   final FadeTheme? fadeTheme;
 
-  //delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
+  /// delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
   final int millisecondsDelay;
 
   const FadeShimmer(
@@ -36,6 +36,7 @@ class FadeShimmer extends StatefulWidget {
             (highlightColor != null && baseColor != null) || fadeTheme != null),
         super(key: key);
 
+  /// use this to create a round loading widget
   factory FadeShimmer.round(
           {required double size,
           Color? highlightColor,

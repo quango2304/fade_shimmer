@@ -2,7 +2,7 @@
 
 A fade shimmer library to implement loading like latest facebook loading effect.
 
-##demo
+## demo
 
 ![](demo.gif)
 
