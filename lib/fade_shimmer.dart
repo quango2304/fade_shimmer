@@ -10,38 +10,38 @@ import 'package:flutter/material.dart';
 enum FadeTheme { light, dark }
 
 class FadeShimmer extends StatefulWidget {
-  final Color highlightColor;
-  final Color baseColor;
+  final Color? highlightColor;
+  final Color? baseColor;
   final double radius;
   final double width;
   final double height;
 
   //light or dark with predefined highlightColor and baseColor
   //need to pass this or highlightColor and baseColor
-  final FadeTheme fadeTheme;
+  final FadeTheme? fadeTheme;
 
   //delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
   final int millisecondsDelay;
 
   const FadeShimmer(
-      {Key key,
+      {Key? key,
       this.millisecondsDelay = 0,
       this.radius = 0,
       this.fadeTheme,
       this.highlightColor,
       this.baseColor,
-      @required this.width,
-      @required this.height})
+      required this.width,
+      required this.height})
       : assert(
             (highlightColor != null && baseColor != null) || fadeTheme != null),
         super(key: key);
 
   factory FadeShimmer.round(
-          {@required double size,
-          Color highlightColor,
-          int millisecondsDelay,
-          Color baseColor,
-          FadeTheme fadeTheme}) =>
+          {required double size,
+          Color? highlightColor,
+          int millisecondsDelay = 0,
+          Color? baseColor,
+          FadeTheme? fadeTheme}) =>
       FadeShimmer(
         height: size,
         width: size,
@@ -61,7 +61,7 @@ class _FadeShimmerState extends State<FadeShimmer> {
       Stream<bool>.periodic(const Duration(seconds: 1), (x) => x % 2 == 0)
           .asBroadcastStream();
   bool isHighLight = true;
-  StreamSubscription sub;
+  late StreamSubscription sub;
 
   Color get highLightColor {
     if (widget.fadeTheme != null) {
@@ -70,9 +70,11 @@ class _FadeShimmerState extends State<FadeShimmer> {
           return Color(0xffF9F9FB);
         case FadeTheme.dark:
           return Color(0xff3A3E3F);
+        default:
+          return Color(0xff3A3E3F);
       }
     }
-    return widget.highlightColor;
+    return widget.highlightColor!;
   }
 
   Color get baseColor {
@@ -82,9 +84,11 @@ class _FadeShimmerState extends State<FadeShimmer> {
           return Color(0xffE6E8EB);
         case FadeTheme.dark:
           return Color(0xff2A2C2E);
+        default:
+          return Color(0xff2A2C2E);
       }
     }
-    return widget.baseColor;
+    return widget.baseColor!;
   }
 
   @override
@@ -103,7 +107,7 @@ class _FadeShimmerState extends State<FadeShimmer> {
   void initState() {
     super.initState();
     sub = isHighLightStream.listen((_isHighLight) {
-      if (widget.millisecondsDelay != 0 && widget.millisecondsDelay != null) {
+      if (widget.millisecondsDelay != 0) {
         Future.delayed(Duration(milliseconds: widget.millisecondsDelay), () {
           isHighLight = _isHighLight;
           safeSetState();

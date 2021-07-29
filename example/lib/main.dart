@@ -6,7 +6,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LoadingPage extends StatefulWidget {
-  const LoadingPage({Key key}) : super(key: key);
+  const LoadingPage({Key? key}) : super(key: key);
 
   @override
   _LoadingPageState createState() => _LoadingPageState();
@@ -75,7 +74,7 @@ class _LoadingPageState extends State<LoadingPage> {
                         radius: 4,
                         millisecondsDelay: delay,
                         fadeTheme:
-                            isDarkMode ? FadeTheme.dark : FadeTheme.light,
+                        isDarkMode ? FadeTheme.dark : FadeTheme.light,
                       ),
                       SizedBox(
                         height: 6,
@@ -86,7 +85,7 @@ class _LoadingPageState extends State<LoadingPage> {
                         width: 170,
                         radius: 4,
                         fadeTheme:
-                            isDarkMode ? FadeTheme.dark : FadeTheme.light,
+                        isDarkMode ? FadeTheme.dark : FadeTheme.light,
                       ),
                     ],
                   )
