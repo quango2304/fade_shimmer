@@ -23,6 +23,9 @@ class FadeShimmer extends StatefulWidget {
   /// delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
   final int millisecondsDelay;
 
+  //animation duration, change this to make the animation faster or slower, will affect all shimmers in the app
+  static int animationDurationInMillisecond = 1000;
+
   const FadeShimmer(
       {Key? key,
       this.millisecondsDelay = 0,
@@ -58,9 +61,18 @@ class FadeShimmer extends StatefulWidget {
 }
 
 class _FadeShimmerState extends State<FadeShimmer> {
-  static final isHighLightStream =
-      Stream<bool>.periodic(const Duration(seconds: 1), (x) => x % 2 == 0)
-          .asBroadcastStream();
+  static final isHighLightStream = (() {
+    final controller = StreamController<bool>.broadcast();
+    bool value = true;
+    Timer.periodic(
+        Duration(milliseconds: FadeShimmer.animationDurationInMillisecond),
+        (_) {
+      controller.add(value);
+      value = !value;
+    });
+    return controller.stream;
+  })();
+
   bool isHighLight = true;
   late StreamSubscription sub;
 

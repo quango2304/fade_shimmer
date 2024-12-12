@@ -24,3 +24,7 @@ create loading with custom size and color
         baseColor: Color(0xffE6E8EB),
       )
 ```
+if you want to change the animation duration, note this change will affect all the widgets.
+```
+FadeShimmer.animationDurationInMillisecond = 3000;//default will be 1000
+```
