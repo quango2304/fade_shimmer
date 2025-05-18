@@ -1,6 +1,6 @@
 name: fade_shimmer
-description: A fade shimmer library to implement loading like lastest facebook loading effect.
-version: 2.3.0
+description: A fade shimmer library to implement loading effects like the latest Facebook loading skeleton UI with smooth fade transitions.
+version: 2.4.0
 homepage: https://github.com/quango2304/fade_shimmer
 
 environment:
